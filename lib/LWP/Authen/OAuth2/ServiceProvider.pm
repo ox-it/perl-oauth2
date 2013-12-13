@@ -81,7 +81,7 @@ sub authorization_url {
     my ($self, $oauth2, @rest) = @_;
     my $param
         = $self->collect_action_params("authorization", $oauth2, @rest);
-    my $uri = URI->new($self->{"authorization_endpoint"});
+    my $uri = URI->new($self->authorization_endpoint());
     $uri->query_form(%$param);
     return $uri->as_string;
 }
@@ -225,7 +225,7 @@ sub construct_tokens {
     }
     my $data = eval {decode_json($content)};
     my $parse_error = $@;
-    my $token_endpoint = $self->token_endpoint;
+    my $token_endpoint = $self->token_endpoint();
 
     # Can this have done wrong?  Let me list the ways...
     if ($parse_error) {
@@ -342,6 +342,17 @@ sub service_provider_class {
             croak("Service provider '$short_name' not found");
         }
     }
+}
+
+# DEFAULTS (can be overridden)
+sub authorization_endpoint {
+    my $self = shift;
+    return $self->{"authorization_endpoint"};
+}
+
+sub token_endpoint {
+    my $self = shift;
+    return $self->{"token_endpoint"};
 }
 
 # DEFAULTS (should be overridden)
