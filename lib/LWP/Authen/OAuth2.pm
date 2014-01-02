@@ -719,8 +719,10 @@ Wellnhofer <wellnhofer@aevum.de> for Net::Google::Analytics::OAuth2 which
 was very enlightening while I was trying to figure out the details of how to
 connect to Google with OAuth2.
 
-Thanks to Thomas Klausner aka domm for reporting that client type specific
-parameters were not available when the client type was properly specified.
+Thanks to L<Thomas Klausner|https://github.com/domm> for reporting that client
+type specific parameters were not available when the client type was properly
+specified, and to L<Alexander Dutton|https://github.com/alexsdutton> for making
+C<ServiceProvider> work without requiring subclassing.
 
 =head1 LICENSE AND COPYRIGHT
 
