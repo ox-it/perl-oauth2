@@ -181,7 +181,7 @@ sub collect_action_params {
         my $result = {
             %$default,
             (
-                map $oauth2_args->{$_},
+                map {($_, $oauth2_args->{$_})}
                     @{ $self->{"$action\_required_params"} },
                     @{ $self->{"$action\_optional_params"} }
             ),
